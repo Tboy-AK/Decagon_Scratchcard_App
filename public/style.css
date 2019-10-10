@@ -1,0 +1,10 @@
+/*[err]{
+    border: 1px red solid;
+}*/
+[err] input{
+    background-color: #ff000050;
+}
+[err] p{
+    font-size: 0.5em;
+    color: red;
+}
