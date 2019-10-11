@@ -22,9 +22,40 @@
     <!--a successful sign-in closes the page and brings up the main scratchcard page on the same window-->
 
     <!--user sign-in view-->
-
+    <div id="sign-up-link"><a href="#sign-in-frame">Sign up</a></div>
+    <div class="container">
+        <form class="form-signin">
+            
+            <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
+            <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </form>
+    </div>
 
     <!--user sign up view. initially hidden-->
+    <div id="sign-in-link"><a href="#sign-in-frame">Sign in</a></div>
+    <div class="sign-up-container container">
+        <form class="form-signup">
+            <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+            <label for="inputEmail" class="sr-only">Email</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
+            <label for="inputTel" class="sr-only">Email</label>
+            <input type="tel" id="inputTel" class="form-control" placeholder="Telephone" required>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
+            <label for="confirmPassword" class="sr-only">Confirm Password</label>
+            <input type="password" id="confirmPassword" class="form-control" placeholder="confirm password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+        </form>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/jquery/dist/jquery.js"></script>
