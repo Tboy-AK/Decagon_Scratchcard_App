@@ -1,4 +1,10 @@
 $(document).ready(()=>{
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus');
+    });
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
     //sign-up user
         //check for input errors after a blur/keyup on the given input
         //for errors, add custom error-defined attributes to the given input, else remove
@@ -18,6 +24,7 @@ $(document).ready(()=>{
         //this resource will have a main property named after the signed-in username
         //the other properties fall under this usernamed property
         //add the generated scratchcard to the `generated` column of the scratchcard table
+        
 
     //buy scratchcard
         //a scratchcard is not bought until paid for

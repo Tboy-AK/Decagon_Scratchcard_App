@@ -5,15 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Scratchcard App</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap-4.3.1/dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/css/bootstrap-grid.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/css/bootstrap-reboot.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap3/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap3/dist/css/bootstrap-theme.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    
 </head>
 <body>
     <!--signed-in user generates a pin-->
@@ -25,18 +20,96 @@
     <!--display scratchcards paid for-->
 
     <!--pin generator section-->
-    <!--dropdown button/input for amount-->
-
+    <!--dropdown button/input for value-->
+    <section class="table pinGenerator">
+    <table class="table pinGenerator">
+        <div class="caption">
+            <h2>Scratchcard Generator</h2>
+            <p>
+                Choose the scratchcard value of your choice and click the 
+                <strong>Generate</strong> button to create a scratchcard
+            </p>
+        </div>
+        <tbody>
+            <tr>
+                <td>
+                    <select id="valueSelector">
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </td>
+                <td><button type="button" class="btn btn-primary">Generate</button></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+      
     <!--generated pins section-->
-    
-    <!--purchase modal or window or page-->
+    <section class="pinsList">
+            <h2>Table of Scratchcards</h2>
+        <div class="btn-group pinsList" role="group" aria-label="Basic example">
+            <!--the initial display of these children buttons is hidden, except `View` button, the first.-->
+            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View the scratchcard table">View</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buyScratchcard">Buy</button>
+            <button type="button" class="btn btn-primary">Delete</button>
+        </div>
+        <!--the initial display of the table is none.-->
+        <table class="table pinsList">
+                <div class="caption">
+                    <p>
+                        To delete or buy a scratchcard, 
+                        select your desired scratchcards using the checkboxes on the `Select` column,
+                        and click the concerned button.
+                    </p>
+                </div>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Values</th>
+                    <th scope="col">Generated PINs</th>
+                    <th scope="col">Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Values</td>
+                    <td>PIN</td>
+                    <td><input type="checkbox"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--purchase modal or window or page-->
+    <section class="modal fade" id="buyScratchcard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Payment Getaway</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/jquery/dist/jquery.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap3/dist/js/bootstrap.js"></script>
+    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap-4.3.1/dist/js/bootstrap.bundle.js"></script>
+    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap-4.3.1/dist/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
 </html>

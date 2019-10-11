@@ -1,4 +1,9 @@
-html, body {
+body{
+    background-color: #fafafa;
+    padding-top: 1%;
+    box-sizing: border-box;
+}
+html#signin, body#signin {
     background-color: #f5f5f5;
     padding-top: 5%;
 }
@@ -51,6 +56,37 @@ html, body {
 }
 .sign-up-container {
     display: none;
+}
+table.pinGenerator tbody td{
+    width: 25%;
+}
+table.pinGenerator tbody td:nth-of-type(3){
+    width: 50%;
+}
+table.pinGenerator tbody td{
+    border: none;
+}
+section.pinGenerator{
+    margin: 1em;
+    box-shadow: 0px 0px 0.4em 0.0em #eaeaea;
+}
+section.pinsList {
+    margin-top: 5em;
+    padding: 1em;
+    border: 1px #e1e1e1 solid;
+    background-color: #eaeaea;
+}
+.btn-group{
+    margin-bottom: 1em;
+}
+div.pinsList button {
+    visibility: hidden;
+}
+div.pinsList button:first-child {
+    visibility: visible;
+}
+table.pinsList {
+    visibility: collapse;
 }
 /*[err]{
     border: 1px red solid;
