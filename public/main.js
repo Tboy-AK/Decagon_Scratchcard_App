@@ -189,6 +189,12 @@ $(document).ready(()=>{
         let valueSet = $("select");
         let generatorBtn = $("#generatorBtn");
         let generatorDisplay = $("p.pinGenerator");
+	
+		let viewBtn = $("div.pinsList button:first");
+        let buyBtn = $("div.pinsList button:nth-of-type(2)");
+        let detBtn = $("div.pinsList button:last");
+		let scratchcardTable = $("table.pinsList");
+        let scratchcardTableBody = $("table.pinsList tbody");
 		
 		//tag webpage with username and email
 		$.ajax({
@@ -280,8 +286,35 @@ $(document).ready(()=>{
 						method: "POST",
 						data: generatedPIN,
 						dataType: "json",
-						success: ()=>{
+						success: (data, status)=>{
 							console.log("Network generatedPIN POST success\n");
+							$.ajax({
+								url: "http://localhost:3000/generated",
+								method: "GET",
+								data: {
+									email: signedinEmail
+								},
+								dataType: "json",
+								success: (data1, status1)=>{
+									console.log("Network generatedPIN GET success\n");
+									if(data1.length!==0){
+										for(let i=0; i<data1.length; i++){
+											scratchcardTableBody.append(
+												"<tr class='row"+data1[i].scratchcardSN+"'>" +
+													"<th class='sNum' scope='row'>"+data1[i].scratchcardSN+"</th>" +
+													"<td class='value'>"+data1[i].value+"</td>" +
+													"<th class='bought'>"+"-----------------"+"</th>" +
+													"<td class=''>"+data1[i].pin+"</td>" +
+													"<td class='picker'><input type='checkbox'></td>" +
+												"<tr>"
+											);
+										}
+									}
+								},
+								error: ()=>{
+									console.log("Network generatedPIN GET error");
+								}
+							});
 						},
 						error: ()=>{
 							console.log("Network generatedPIN error");
@@ -292,22 +325,48 @@ $(document).ready(()=>{
 					console.log("Network error");
 				}
 			});
-
+			
 
 		});
 	
 		//scratchcard table
-        let viewBtn = $("div.pinsList button:first");
-        let buyBtn = $("div.pinsList button:nth-of-type(2)");
-        let detBtn = $("div.pinsList button:last");
-        let scratchcardTable = $("table.pinsList");
+        
 		
 		viewBtn.on("click", ()=>{
+			$.ajax({
+				url: "http://localhost:3000/generated",
+				method: "GET",
+				data: {
+					email: signedinEmail
+				},
+				dataType: "json",
+				success: (data1, status1)=>{
+					console.log("Network generatedPIN GET success\n");
+					if(data1.length!==0){
+						for(let i=0; i<data1.length; i++){
+							scratchcardTableBody.append(
+								"<tr class='row"+data1[i].scratchcardSN+"'>" +
+									"<th class='sNum' scope='row'>"+data1[i].scratchcardSN+"</th>" +
+									"<td class='value'>"+data1[i].value+"</td>" +
+									"<td class='bought'>"+"-----------------"+"</td>" +
+									"<td class='generated'>"+data1[i].pin+"</td>" +
+									"<td class='picker'><input type='checkbox'></td>" +
+								"<tr>"
+							);
+						}
+					}
+				},
+				error: ()=>{
+					console.log("Network generatedPIN GET error");
+				}
+			});
 			viewBtn.css("display","none");
 			buyBtn.css("visibility","visible");
 			detBtn.css("visibility","visible");
 			scratchcardTable.css("visibility","visible");
 		});
+	
+		
 
     //buy scratchcard
         //a scratchcard is not bought until paid for
