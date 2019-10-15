@@ -3,7 +3,7 @@ body{
     padding-top: 1%;
     box-sizing: border-box;
 }
-html#signin, body#signin {
+html.user, body.user {
     background-color: #f5f5f5;
     padding-top: 5%;
 }
@@ -13,7 +13,18 @@ html#signin, body#signin {
     padding: 15px;
     margin: auto;
 }
-#sign-up-link a, #sign-in-link a {
+header.appHeader{
+	margin-bottom: 1em;
+}
+header.appHeader h2.salutation{
+	clear: both;
+	padding: 0.5em;
+}
+#sign-out-link {
+    padding: 15px;
+    margin: auto;
+}
+#sign-up-link button, #sign-in-link button, #sign-out-link button {
     float: right;
 }
 .container {
@@ -54,8 +65,17 @@ html#signin, body#signin {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-.sign-up-container {
+section#sign-up-frame {
     display: none;
+}
+.error {
+	display: none;
+	font-size: 0.8em;
+	color: red;
+}
+#error-signin {
+	font-size: 1.1em;
+	font-weight: 600;
 }
 table.pinGenerator tbody td{
     width: 25%;
@@ -84,6 +104,7 @@ div.pinsList button {
 }
 div.pinsList button:first-child {
     visibility: visible;
+    
 }
 table.pinsList {
     visibility: collapse;

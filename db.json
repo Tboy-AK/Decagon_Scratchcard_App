@@ -1,0 +1,26 @@
+{
+  "users": [
+    {
+      "username": "Akanji",
+      "email": "akanji@decagon.org",
+      "password": "asdf",
+      "id": 1
+    },
+    {
+      "username": "Dav",
+      "email": "dav@decagon.org",
+      "password": "qwerty",
+      "id": 2
+    }
+  ],
+  "signin": [
+    {
+      "username": "Akanji",
+      "email": "akanji@decagon.org",
+      "password": "asdf",
+      "id": "1"
+    }
+  ],
+  "generated": [],
+  "bought": []
+}

@@ -1,68 +1,62 @@
 <!DOCTYPE html>
-<html class="signin">
-<head class="signin">
+<html class="user">
+<head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Sign-in Scratchcard App</title>
+    <title>Scratchcard App Sign-in</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/css/bootstrap-grid.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/css/bootstrap-reboot.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap3/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap3/dist/css/bootstrap-theme.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
 </head>
-<body>
+<body class="user">
     <!--the landing page of this web app is the user sign-in page-->
     <!--in this page we can toggle between sign-in and sign-up-->
     <!--a successful sign-up closes the view and brings up the sign-in view-->
     <!--a successful sign-in closes the page and brings up the main scratchcard page on the same window-->
 
     <!--user sign-in view-->
-    <div id="sign-up-link"><a href="#sign-in-frame">Sign up</a></div>
-    <div class="container">
-        <form class="form-signin">
-            
-            <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
-            <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
-            <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-    </div>
+    <section id="sign-in-frame">
+        <p id="sign-up-link"><button class="btn btn-sm btn-secondary">Sign up</button></p>
+        <div class="container">
+            <form class="form-signin">
+				<p class="error" id="error-signin"></p>
+                <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+                <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
+                <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
+                <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinBtn">Sign in</button>
+            </form>
+        </div>
+    </section>
 
     <!--user sign up view. initially hidden-->
-    <div id="sign-in-link"><a href="#sign-in-frame">Sign in</a></div>
-    <div class="sign-up-container container">
-        <form class="form-signup">
-            <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-            <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="email" required autofocus>
-            <label for="inputTel" class="sr-only">Email</label>
-            <input type="tel" id="inputTel" class="form-control" placeholder="Telephone" required>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="password" required>
-            <label for="confirmPassword" class="sr-only">Confirm Password</label>
-            <input type="password" id="confirmPassword" class="form-control" placeholder="confirm password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-        </form>
-    </div>
+    <section id="sign-up-frame">
+        <p id="sign-in-link"><button class="btn btn-sm btn-secondary">Sign in</button></p>
+        <div class="sign-up-container container">
+            <form class="form-signup">
+                <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+                <input type="text" id="regUsername" class="form-control" placeholder="username" required autofocus>
+                <input type="email" id="regEmail" class="form-control" placeholder="email" required>
+				<p class="error" id="error-regMail"></p>
+                <input type="password" id="regPassword" class="form-control" placeholder="password" required>
+                <input type="password" id="confirmPassword" class="form-control" placeholder="confirm password" required>
+				<p class="error" id="error-confirmPass"></p>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" id="regBtn">Sign up</button>
+            </form>
+        </div>
+    </section>
 
+    <script src="dist/jquery.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/jquery/dist/jquery.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script src="C:/Users/AKANJI OLUWATOBILOBA/node_modules/bootstrap3/dist/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="main.js"></script>
 </body>
 </html>
