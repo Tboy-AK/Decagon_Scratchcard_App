@@ -246,9 +246,12 @@ $(document).ready(()=>{
 		//generate PINS
 		generatorBtn.on("click", ()=>{
 			let randomPIN=[];
+			//generate a 17-digit PIN
 			for(let i=0; i<17; i++){
 				randomPIN.push(Math.floor(Math.random()*10));
 			}
+			
+			//specify algorithm for a given scratchcard value
 			if(valueSet.val()==="200"){
 				randomPIN[0]=2;
 				randomPIN[5]=2;
@@ -271,6 +274,7 @@ $(document).ready(()=>{
 				scratchcardSN: ""
 			}
 
+			//Display generated and stored scratchcards 
 			$.ajax({
 				url: "http://localhost:3000/generated",
 				method: "GET",
@@ -329,9 +333,7 @@ $(document).ready(()=>{
 
 		});
 	
-		//scratchcard table
-        
-		
+		//scratchcard table display functionality
 		viewBtn.on("click", ()=>{
 			$.ajax({
 				url: "http://localhost:3000/generated",
