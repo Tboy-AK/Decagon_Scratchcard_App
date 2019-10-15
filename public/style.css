@@ -16,7 +16,7 @@ html.user, body.user {
 header.appHeader{
 	margin-bottom: 1em;
 }
-header.appHeader h2.salutation{
+header.appHeader h4.salutation{
 	clear: both;
 	padding: 0.5em;
 }
@@ -24,8 +24,15 @@ header.appHeader h2.salutation{
     padding: 15px;
     margin: auto;
 }
-#sign-up-link button, #sign-in-link button, #sign-out-link button {
+#sign-up-link button, #sign-in-link button, #sign-out-link button, p.salutation span {
     float: right;
+}
+p.salutation span {
+    clear: right;
+	font-size: 0.7em;
+}
+p.salutation span:hover {
+    color: #007bff;
 }
 .container {
     display: flex;

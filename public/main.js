@@ -155,10 +155,6 @@ $(document).ready(()=>{
 										dataType: "json",
 										success: (data2, status2)=>{
 											console.log("Network Signin POST success\n"+JSON.stringify(data2));
-											signedinUser=data2.username;
-											signedinEmail=data2.email;
-											$("header.appHeader h2.salutation").text("Welcome, "+signedinUser);
-											$("header.appHeader p.salutation").text(signedinEmail);
 											window.open("main.html", "_self", "", true);
 										},
 										error: ()=>{
@@ -189,29 +185,123 @@ $(document).ready(()=>{
         //this resource will have a main property named after the signed-in username
         //the other properties fall under this usernamed property
         //add the generated scratchcard to the `generated` column of the scratchcard table
-		let signoutBtn = $("#sign-out-link a");
+		let signoutBtn = $("#sign-out-link button");
         let valueSet = $("select");
         let generatorBtn = $("#generatorBtn");
         let generatorDisplay = $("p.pinGenerator");
 		
+		//tag webpage with username and email
+		$.ajax({
+			url: "http://localhost:3000/signin",
+			method: "GET",
+			dataType: "json",
+			success: (data, status)=>{
+				console.log("Network Signin GET success\n");
+				signedinUser=data[0].username;
+				signedinEmail=data[0].email;
+				$("header.appHeader h4.salutation").text("Welcome, "+signedinUser);
+				$("header.appHeader p.salutation span").text(signedinEmail);
+			},
+			error: ()=>{
+				console.log("Network error GET Sign in");
+			}
+		});
+		
+		//signout functionailty
 		signoutBtn.on("click", ()=>{
 			$.ajax({
 				url: "http://localhost:3000/signin",
-				method: "DELETE",
-				success: ()=>{
-					window.open("index.html", "_self", "", true);
-					alert("Succesfully Signed out");
+				method: "GET",
+				data: {
+					username:signedinUser,
+					email: signedinEmail
+				},
+				dataType: "json",
+				success: (data,status)=>{
+					$.ajax({
+						url: "http://localhost:3000/signin/"+data[0].id,
+						method: "DELETE",
+						success: ()=>{
+							console.log("succesful signout");
+							window.open("index.html", "_self", "", true);
+							alert("Succesfully Signed out");
+						},
+						error: ()=>{
+							console.log("Failed to Sign out\nprobably Server breakdown");
+						}
+					});
 				},
 				error: ()=>{
-					console.log("Failed to Sign out\nprobably Server breakdown");
+					console.log("Failed to GET Sign out");
 				}
 			});
 		});
 	
+		//generate PINS
+		generatorBtn.on("click", ()=>{
+			let randomPIN=[];
+			for(let i=0; i<17; i++){
+				randomPIN.push(Math.floor(Math.random()*10));
+			}
+			if(valueSet.val()==="200"){
+				randomPIN[0]=2;
+				randomPIN[5]=2;
+				randomPIN[12]=2;
+			} else if(valueSet.val()==="500"){
+				randomPIN[0]=5;
+				randomPIN[5]=5;
+				randomPIN[12]=5;
+			} else if(valueSet.val()==="1000"){
+				randomPIN[0]=3;
+				randomPIN[5]=3;
+				randomPIN[12]=3;
+			}
+			generatorDisplay.text(randomPIN.join(""));
+
+			let generatedPIN = {
+				pin: randomPIN.join(""),
+				value: valueSet.val(),
+				email: signedinEmail,
+				scratchcardSN: ""
+			}
+
+			$.ajax({
+				url: "http://localhost:3000/generated",
+				method: "GET",
+				data: {
+					email: signedinEmail
+				},
+				dataType: "json",
+				success: (data, status)=>{
+					console.log("Network success\n");
+					generatedPIN.scratchcardSN = data.length + 1;
+					$.ajax({
+						url: "http://localhost:3000/generated",
+						method: "POST",
+						data: generatedPIN,
+						dataType: "json",
+						success: ()=>{
+							console.log("Network generatedPIN POST success\n");
+						},
+						error: ()=>{
+							console.log("Network generatedPIN error");
+						}
+					});
+				},
+				error: ()=>{
+					console.log("Network error");
+				}
+			});
+
+
+		});
+	
+		//scratchcard table
         let viewBtn = $("div.pinsList button:first");
         let buyBtn = $("div.pinsList button:nth-of-type(2)");
         let detBtn = $("div.pinsList button:last");
         let scratchcardTable = $("table.pinsList");
+		
 		viewBtn.on("click", ()=>{
 			viewBtn.css("display","none");
 			buyBtn.css("visibility","visible");
