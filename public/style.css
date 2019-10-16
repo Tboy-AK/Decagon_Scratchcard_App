@@ -1,3 +1,6 @@
+* {
+	box-sizing: border-box;
+}
 body{
     background-color: #fafafa;
     padding-top: 1%;
@@ -6,6 +9,9 @@ body{
 html.user, body.user {
     background-color: #f5f5f5;
     padding-top: 5%;
+}
+.floatStop {
+	clear: both;
 }
 #sign-up-link, #sign-in-link {
     width: 100%;
@@ -116,13 +122,86 @@ div.pinsList button:first-child {
 table.pinsList {
     visibility: collapse;
 }
-/*[err]{
-    border: 1px red solid;
-}*/
 [err] input{
     background-color: #ff000015;
 }
 [err] p{
     font-size: 0.5em;
     color: red;
+}
+
+/*checkout*/
+section.modal {
+	height: 99%;
+}
+div.sub-parent {
+	background-color: #ccc;
+}
+.screenbox {
+	height: 30%;
+	margin: 1em auto 2em;
+	width: 60%;
+	box-shadow: 0px 0px 2px 0px #aaaa;
+}
+.screenbox h1 {
+	width: 100%;
+	clear: both;
+	text-align: center;
+	padding: 0.1em 0em 0.5em;
+	font-size: 4em;
+	overflow-x: hidden;
+}
+.screenbox h1:hover {
+	overflow-x: auto;
+}
+.screenbox h1 span.currency {
+	font-size: 0.5em;
+	bottom: 0.6em;
+	position: relative;
+	margin-left: 0.2em;
+}
+div.screenbox div.sub {
+	width: 33%;
+	float: left;
+	text-align: center;
+	margin: 0 0.1%;
+}
+div.screenbox div.sub p.value {
+	font-size: 10px;
+}
+div.screenbox div.sub p {
+	font-size: 12px;
+	margin-bottom: 0;
+}
+section.card-details {
+	background-color: #999;
+	padding: 10px;
+	width: 100%;
+}
+section.card-details form {
+	width: 100%;
+}
+
+section.card-details fieldset label {
+	margin-top: 0;
+}
+form.form-card h5 {
+	color: #ddd;
+}
+fieldset.card-digits input {
+	font-size: 14px;
+	width: 200px;
+}
+fieldset.card-date input {
+	font-size: 12px;
+	width: 160px;
+}
+fieldset.card-cvc input {
+	font-size: 14px;
+	width: 60px;
+}
+#payBtn {
+	width: 30%;
+	min-width: 160px;
+	margin: 10px auto 0;
 }
