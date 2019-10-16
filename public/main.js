@@ -274,7 +274,7 @@ $(document).ready(()=>{
 				scratchcardSN: ""
 			}
 
-			//Display generated and stored scratchcards 
+			//Display generated and stored scratchcards created by the user
 			$.ajax({
 				url: "http://localhost:3000/generated",
 				method: "GET",
@@ -290,7 +290,7 @@ $(document).ready(()=>{
 						method: "POST",
 						data: generatedPIN,
 						dataType: "json",
-						success: (data, status)=>{
+						success: (data2, status2)=>{
 							console.log("Network generatedPIN POST success\n");
 							$.ajax({
 								url: "http://localhost:3000/generated",
@@ -329,8 +329,6 @@ $(document).ready(()=>{
 					console.log("Network error");
 				}
 			});
-			
-
 		});
 	
 		//scratchcard table display functionality
