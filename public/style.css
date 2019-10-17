@@ -133,6 +133,7 @@ table.pinsList {
 /*checkout*/
 section.modal {
 	height: 99%;
+	min-width: 480px;
 }
 div.sub-parent {
 	background-color: #ccc;
@@ -141,7 +142,7 @@ div.sub-parent {
 	height: 30%;
 	margin: 1em auto 2em;
 	width: 60%;
-	box-shadow: 0px 0px 2px 0px #aaaa;
+	box-shadow: 0px 0px 1px 0px #dfdfdf;
 }
 .screenbox h1 {
 	width: 100%;
@@ -159,6 +160,12 @@ div.sub-parent {
 	bottom: 0.6em;
 	position: relative;
 	margin-left: 0.2em;
+}
+div.screenbox div.sub-parent h6:first-of-type {
+	text-align: center;
+	border-bottom: 1px #bbb5 solid;
+	padding-bottom: 12px;
+	color: #444;
 }
 div.screenbox div.sub {
 	width: 33%;
@@ -189,16 +196,29 @@ form.form-card h5 {
 	color: #ddd;
 }
 fieldset.card-digits input {
-	font-size: 14px;
 	width: 200px;
 }
+fieldset.card-date {
+	width: 70%;
+	float: left;
+}
 fieldset.card-date input {
-	font-size: 12px;
-	width: 160px;
+	display: inline-block;
+	width: 60px;
+}
+fieldset.card-date label {
+	display: block;
+	width: 100%;
+}
+fieldset.card-cvc {
+	width: auto;
+	float: right;
 }
 fieldset.card-cvc input {
-	font-size: 14px;
-	width: 60px;
+	width: 80px;
+}
+fieldset.card-name {
+	clear: both;
 }
 #payBtn {
 	width: 30%;

@@ -191,11 +191,11 @@ $(document).ready(()=>{
         let generatorDisplay = $("p.pinGenerator");
 	
 		let viewBtn = $("div.pinsList button:first");
-        let buyBtn = $("div.pinsList button:nth-of-type(2)");
-        let detBtn = $("div.pinsList button:last");
+        let buyBtn = $("button.buy-scratch-btn");
+        let detBtn = $("button.det-scratch-btn");
 		let scratchcardTable = $("table.pinsList");
         let scratchcardTableBody = $("table.pinsList tbody");
-		
+	
 		//tag webpage with username and email
 		$.ajax({
 			url: "http://localhost:3000/signin",
@@ -302,16 +302,35 @@ $(document).ready(()=>{
 								success: (data1, status1)=>{
 									console.log("Network generatedPIN GET success\n");
 									if(data1.length!==0){
+										scratchcardTableBody.empty();
 										for(let i=0; i<data1.length; i++){
 											scratchcardTableBody.append(
-												"<tr class='row"+data1[i].scratchcardSN+"'>" +
-													"<th class='sNum' scope='row'>"+data1[i].scratchcardSN+"</th>" +
+												"<tr class='row"+(i+1)+"'>" +
+													"<th class='sNum' scope='row'>"+(i+1)+"</th>" +
 													"<td class='value'>"+data1[i].value+"</td>" +
-													"<th class='bought'>"+"-----------------"+"</th>" +
-													"<td class=''>"+data1[i].pin+"</td>" +
-													"<td class='picker'><input type='checkbox'></td>" +
+													"<td class='bought'>"+"-----------------"+"</td>" +
+													"<td class=''>"+data1[i].pin+"<input type='checkbox' name='row"+(i+1)+"'></td>" +
 												"<tr>"
 											);
+											$.ajax({
+												url: "http://localhost:3000/bought",
+												method: "GET",
+												data: {
+													email: signedinEmail
+												},
+												dataType: "json",
+												success: (data3, status3)=>{
+													console.log("Network boughtPIN GET success");
+													if(data3.length!==0){
+														for(let j=0; j<data3.length; j++){
+															$("table.pinsList tbody tr.row"+data3[j].scratchcardSN+" td.bought").text(data3[j].pin);
+														}
+													}
+												},
+												error: ()=>{
+													console.log("Network boughtPIN GET error");
+												}
+											});
 										}
 									}
 								},
@@ -333,6 +352,7 @@ $(document).ready(()=>{
 	
 		//scratchcard table display functionality
 		viewBtn.on("click", ()=>{
+			
 			$.ajax({
 				url: "http://localhost:3000/generated",
 				method: "GET",
@@ -341,18 +361,36 @@ $(document).ready(()=>{
 				},
 				dataType: "json",
 				success: (data1, status1)=>{
-					console.log("Network generatedPIN GET success\n");
+					console.log("Network generatedPIN GET success");
 					if(data1.length!==0){
 						for(let i=0; i<data1.length; i++){
 							scratchcardTableBody.append(
-								"<tr class='row"+data1[i].scratchcardSN+"'>" +
-									"<th class='sNum' scope='row'>"+data1[i].scratchcardSN+"</th>" +
+								"<tr class='row"+(i+1)+"'>" +
+									"<th class='sNum' scope='row'>"+(i+1)+"</th>" +
 									"<td class='value'>"+data1[i].value+"</td>" +
-									"<td class='bought'>"+"-----------------"+"</td>" +
-									"<td class='generated'>"+data1[i].pin+"</td>" +
-									"<td class='picker'><input type='checkbox'></td>" +
+									"<td class='bought'>--------------------</td>" +
+									"<td class='generated'>"+data1[i].pin+"<input type='checkbox' name='row"+(i+1)+"'></td>" +
 								"<tr>"
 							);
+							$.ajax({
+								url: "http://localhost:3000/bought",
+								method: "GET",
+								data: {
+									email: signedinEmail
+								},
+								dataType: "json",
+								success: (data, status)=>{
+									console.log("Network generatedPIN GET success");
+									if(data.length!==0){
+										for(let j=0; j<data.length; j++){
+											$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.scratchcardSN===data[j].scratchcardSN})+1)+" td.bought").text(data[j].pin);
+										}
+									}
+								},
+								error: ()=>{
+									console.log("Network boughtPIN GET error");
+								}
+							});
 						}
 					}
 				},
@@ -366,7 +404,124 @@ $(document).ready(()=>{
 			scratchcardTable.css("visibility","visible");
 		});
 	
+	
+		let selectedPINS=[];
 		
+			
+			/*$.ajax({
+				url: "http://localhost:3000/generated",
+				method: "GET",
+				data: {
+					email: signedinEmail
+				},
+				dataType: "json",
+				success: (data, status)=>{
+					console.log("Network generatedPIN GET success for checklist");
+					for(let i=0; i<data.length; i++){
+						//selectedPINS[data[i].scratchcardSN]=data[i].scratchcardSN;
+						if($("input[name='row"+data[i].scratchcardSN+"']").prop("checked")){
+							
+							//console.log(JSON.stringify(data[i]));
+							selectedPINS.push(data[i]);
+							//console.log($("input[name='row"+data[i].scratchcardSN+"']:checked").attr("name"));
+						}
+					}
+					//console.log("checklist\n"+JSON.stringify(selectedPINS));
+				},
+				error: ()=>{
+					console.log("Network generatedPIN GET error for checklist");
+				}
+			});*/
+	
+	//delete scratchcard
+		
+		
+		detBtn.on("click", ()=>{
+			$.ajax({
+				url: "http://localhost:3000/generated",
+				method: "GET",
+				data: {
+					email: signedinEmail
+				},
+				dataType: "json",
+				success: (data, status)=>{
+					console.log("Network generatedPIN GET success for checklist");
+					for(let i=0; i<data.length; i++){
+						//selectedPINS[data[i].scratchcardSN]=data[i].scratchcardSN;
+						if($("input[name='row"+(i+1)+"']").prop("checked")){
+							
+							//console.log(JSON.stringify(data[i]));
+							selectedPINS.push(data[i]);
+							//console.log($("input[name='row"+data[i].scratchcardSN+"']:checked").attr("name"));
+							
+							$.ajax({
+								url: "http://localhost:3000/generated/"+data[i].id,
+								method: "DELETE",
+								success: ()=>{
+									console.log("Network generatedPIN GET success for  deleting PINs");
+									
+									$.ajax({
+										url: "http://localhost:3000/generated",
+										method: "GET",
+										data: {
+											email: signedinEmail
+										},
+										dataType: "json",
+										success: (data2, status2)=>{
+											console.log("Network generatedPIN GET success\n");
+											if(data2.length!==0){
+												scratchcardTableBody.empty();
+												for(let j=0; j<data2.length; j++){
+													scratchcardTableBody.append(
+														"<tr class='row"+(j+1)+"'>" +
+															"<th class='sNum' scope='row'>"+(j+1)+"</th>" +
+															"<td class='value'>"+data2[j].value+"</td>" +
+															"<td class='bought'>--------------------</td>" +
+															"<td class='generated'>"+data2[j].pin+"<input type='checkbox' name='row"+(j+1)+"'></td>" +
+														"<tr>"
+													);
+													$.ajax({
+														url: "http://localhost:3000/bought",
+														method: "GET",
+														data: {
+															email: signedinEmail
+														},
+														dataType: "json",
+														success: (data3, status3)=>{
+															console.log("Network generatedPIN GET success");
+															if(data3.length!==0){
+																for(let k=0; k<data3.length; k++){
+																	$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data[k].pin);
+																}
+															}
+														},
+														error: ()=>{
+															console.log("Network boughtPIN GET error");
+														}
+													});
+												}
+											}
+										},
+										error: ()=>{
+											console.log("Network generatedPIN GET error");
+										}
+									});
+								},
+								error: ()=>{
+									console.log("Network generatedPIN GET error for deleting PINs");
+								}
+							});
+						}
+					}
+					console.log("checklist\n"+JSON.stringify(selectedPINS));
+					
+				},
+				error: ()=>{
+					console.log("Network generatedPIN GET error for checklist");
+				}
+			});
+		});
+	
 
     //buy scratchcard
         //a scratchcard is not bought until paid for

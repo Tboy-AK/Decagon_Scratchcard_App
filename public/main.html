@@ -58,15 +58,15 @@
         <div class="btn-group pinsList" role="group" aria-label="Basic example">
             <!--the initial display of these children buttons is hidden, except `View` button, the first.-->
             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View the scratchcard table">View</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buyScratchcard">Buy</button>
-            <button type="button" class="btn btn-primary">Delete</button>
+            <button type="button" class="btn btn-primary buy-scratch-btn" data-toggle="modal" data-target="#buyScratchcard">Buy</button>
+            <button type="button" class="btn btn-primary det-scratch-btn">Det</button>
         </div>
         <!--the initial visibility of the table is collapsed.-->
         <table class="table pinsList">
 			<div class="caption">
 				<p>
 					To delete or buy a scratchcard, 
-					select your desired scratchcards using the checkboxes on the `Select` column,
+					select your desired scratchcards by clicking on the corresponding checkboxes,
 					and click the concerned button.
 				</p>
 			</div>
@@ -76,13 +76,13 @@
                     <th scope="col">Values</th>
 					<th scope="col">Bought Scratchcards</th>
                     <th scope="col">Generated PINs</th>
-                    <th scope="col">Select</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
     </section>
 
+	
     <!--purchase modal or window or page-->
     <section class="modal fade checkout" id="buyScratchcard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -98,6 +98,7 @@
 						<h1 class="priceTotal"><span class="value">1700000000</span><span class="currency">&#x20A6</span></h1>
 						
 						<div class="sub-parent">
+							<h6 class="h6 mb-2 font-weight-bold">Invoice</h6>
 							<div class="sub screen200">
 								<p class="value value200"><span class="currency">&#x20A6</span><span class="value">200</span></p>
 								<p class="quantity quantity200">1</p>
@@ -128,7 +129,8 @@
 								
 								<fieldset class="card-date">
 									<label>Expiry Date</label>
-									<input type="month" class="form-control" placeholder="mm" required>
+									<input type="text" class="form-control" placeholder="mm" required>
+									<input type="text" class="form-control" placeholder="yy" required>
 								</fieldset>
 								
 								<fieldset class="card-cvc">
@@ -138,7 +140,7 @@
 								
 								<fieldset class="card-name">
 									<label>Cardholder's Name</label>
-									<input type="text" class="form-control" placeholder="XXX" required>
+									<input type="text" class="form-control" placeholder="Name on card" required>
 								</fieldset>
 								
 								<button class="btn btn-lg btn-primary btn-block" type="submit" id="payBtn">Pay Now</button>
