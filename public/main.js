@@ -455,62 +455,76 @@ $(document).ready(()=>{
 							//console.log($("input[name='row"+data[i].scratchcardSN+"']:checked").attr("name"));
 							
 							$.ajax({
-								url: "http://localhost:3000/generated/"+data[i].id,
-								method: "DELETE",
-								success: ()=>{
-									console.log("Network generatedPIN GET success for  deleting PINs");
-									
+								url: "http://localhost:3000/bin",
+								method: "POST",
+								data: data[i],
+								dataType: "json",
+								success: (data4, status4)=>{
+									console.log("Network recycle bin success");
 									$.ajax({
-										url: "http://localhost:3000/generated",
-										method: "GET",
-										data: {
-											email: signedinEmail
-										},
-										dataType: "json",
-										success: (data2, status2)=>{
-											console.log("Network generatedPIN GET success\n");
-											if(data2.length!==0){
-												scratchcardTableBody.empty();
-												for(let j=0; j<data2.length; j++){
-													scratchcardTableBody.append(
-														"<tr class='row"+(j+1)+"'>" +
-															"<th class='sNum' scope='row'>"+(j+1)+"</th>" +
-															"<td class='value'>"+data2[j].value+"</td>" +
-															"<td class='bought'>--------------------</td>" +
-															"<td class='generated'>"+data2[j].pin+"<input type='checkbox' name='row"+(j+1)+"'></td>" +
-														"<tr>"
-													);
-													$.ajax({
-														url: "http://localhost:3000/bought",
-														method: "GET",
-														data: {
-															email: signedinEmail
-														},
-														dataType: "json",
-														success: (data3, status3)=>{
-															console.log("Network generatedPIN GET success");
-															if(data3.length!==0){
-																for(let k=0; k<data3.length; k++){
-																	$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data[k].pin);
+										url: "http://localhost:3000/generated/"+data[i].id,
+										method: "DELETE",
+										success: ()=>{
+											console.log("Network generatedPIN GET success for  deleting PINs");
+
+											$.ajax({
+												url: "http://localhost:3000/generated",
+												method: "GET",
+												data: {
+													email: signedinEmail
+												},
+												dataType: "json",
+												success: (data2, status2)=>{
+													console.log("Network generatedPIN GET success\n");
+													if(data2.length!==0){
+														scratchcardTableBody.empty();
+														for(let j=0; j<data2.length; j++){
+															scratchcardTableBody.append(
+																"<tr class='row"+(j+1)+"'>" +
+																	"<th class='sNum' scope='row'>"+(j+1)+"</th>" +
+																	"<td class='value'>"+data2[j].value+"</td>" +
+																	"<td class='bought'>--------------------</td>" +
+																	"<td class='generated'>"+data2[j].pin+"<input type='checkbox' name='row"+(j+1)+"'></td>" +
+																"<tr>"
+															);
+															$.ajax({
+																url: "http://localhost:3000/bought",
+																method: "GET",
+																data: {
+																	email: signedinEmail
+																},
+																dataType: "json",
+																success: (data3, status3)=>{
+																	console.log("Network generatedPIN GET success");
+																	if(data3.length!==0){
+																		for(let k=0; k<data3.length; k++){
+																			$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data[k].pin);
+																		}
+																	}
+																},
+																error: ()=>{
+																	console.log("Network boughtPIN GET error");
 																}
-															}
-														},
-														error: ()=>{
-															console.log("Network boughtPIN GET error");
+															});
 														}
-													});
+													}
+												},
+												error: ()=>{
+													console.log("Network generatedPIN GET error");
 												}
-											}
+											});
 										},
 										error: ()=>{
-											console.log("Network generatedPIN GET error");
+											console.log("Network generatedPIN GET error for deleting PINs");
 										}
 									});
 								},
 								error: ()=>{
-									console.log("Network generatedPIN GET error for deleting PINs");
+									console.log("Network recycle bin error");
 								}
 							});
+							
+							
 						}
 					}
 					console.log("checklist\n"+JSON.stringify(selectedPINS));

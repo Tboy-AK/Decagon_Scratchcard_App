@@ -23,13 +23,6 @@
   ],
   "generated": [
     {
-      "pin": "21268272064427025",
-      "value": "200",
-      "email": "dav@decagon.org",
-      "scratchcardSN": "6",
-      "id": 6
-    },
-    {
       "pin": "54946550940558929",
       "value": "500",
       "email": "dav@decagon.org",
@@ -63,13 +56,6 @@
       "email": "dav@decagon.org",
       "scratchcardSN": "11",
       "id": 11
-    },
-    {
-      "pin": "56459592189359381",
-      "value": "500",
-      "email": "dav@decagon.org",
-      "scratchcardSN": "12",
-      "id": 12
     }
   ],
   "bought": [
@@ -81,5 +67,20 @@
       "id": 9
     }
   ],
-  "bin": []
+  "bin": [
+    {
+      "pin": "21268272064427025",
+      "value": "200",
+      "email": "dav@decagon.org",
+      "scratchcardSN": "6",
+      "id": "6"
+    },
+    {
+      "pin": "56459592189359381",
+      "value": "500",
+      "email": "dav@decagon.org",
+      "scratchcardSN": "12",
+      "id": "12"
+    }
+  ]
 }
