@@ -90,6 +90,9 @@ section#sign-up-frame {
 	font-size: 1.1em;
 	font-weight: 600;
 }
+section.pinslist, section.pinGenerator {
+	min-width: 480px;
+}
 table.pinGenerator tbody td{
     width: 25%;
 }
@@ -136,7 +139,7 @@ section.modal {
 	min-width: 480px;
 }
 div.sub-parent {
-	background-color: #ccc;
+	background-color: #999;
 }
 .screenbox {
 	height: 30%;
@@ -192,11 +195,15 @@ section.card-details form {
 section.card-details fieldset label {
 	margin-top: 0;
 }
+label {
+	display: block;
+}
 form.form-card h5 {
 	color: #ddd;
 }
 fieldset.card-digits input {
-	width: 200px;
+	width: 4em;
+	display: inline-block;
 }
 fieldset.card-date {
 	width: 70%;

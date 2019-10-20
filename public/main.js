@@ -115,6 +115,7 @@ $(document).ready(()=>{
 			$.ajax({
 				url: "http://localhost:3000/users",
 				method: "GET",
+				async: false,
 				data: {
 					email: inputEmail.val(),
 					password: inputPass.val()
@@ -130,14 +131,17 @@ $(document).ready(()=>{
 						$.ajax({
 							url: "http://localhost:3000/signin",
 							method: "GET",
+							async: false,
 							success: (data1,status1)=>{
 								console.log("Network Signin GET success");
+								
 								//if sign in is already occupied, sign that profile out
 								if (data1.length!==0) {
 									for(let i=0;i<data1.length; i++) {
 										$.ajax({
 											url: "http://localhost:3000/signin/"+data1[i].id,
 											method: "DELETE",
+											async: false,
 											success: ()=>{
 												console.log("Success Sign out previous user");
 											},
@@ -147,6 +151,7 @@ $(document).ready(()=>{
 										});
 									}
 								}
+								
 								//when sign in is empty, sign in new session
 								if (data1.length===0) {
 									$.ajax({
@@ -154,6 +159,7 @@ $(document).ready(()=>{
 										method: "POST",
 										data: data[0],
 										dataType: "json",
+										async: false,
 										success: (data2, status2)=>{
 											console.log("Network Signin POST success\n"+JSON.stringify(data2));
 											window.open("main.html", "_self", "", true);
@@ -179,8 +185,40 @@ $(document).ready(()=>{
 			});
 		}
 	});
-
 	
+
+	//the main app
+	$.ajax({
+		url: "http://localhost:3000/signin",
+		method: "GET",
+		dataType: "json",
+		success: (data, status)=>{
+			//check for user presence in `signin` before any further requests can be made
+	if(data.length!==0){
+		
+	$(window).on("unload", ()=>{
+		$.ajax({
+			url: "http://localhost:3000/signin",
+			method: "GET",
+			data: {
+				email: inputEmail.val(),
+				password: inputPass.val()
+			},
+			dataType: "json",
+			success: (dataOnClose, statusOnClose)=>{
+				$.ajax({
+					url: "http://localhost:3000/signin/"+dataOnClose[0].id,
+					method: "DELETE",
+					error: ()=>{
+						console.log("Network error cleaning end session");
+					}
+				});
+			},
+			error: ()=>{
+				console.log("Network GET error cleaning end session");
+			}
+		});
+	});
     //generate scratchcard
         //post generated scratchcard to `generated_scratchcards` db resource
         //this resource will have a main property named after the signed-in username
@@ -287,7 +325,7 @@ $(document).ready(()=>{
 				},
 				dataType: "json",
 				success: (data, status)=>{
-					console.log("Network success\n");
+					console.log("Network success");
 					generatedPIN.scratchcardSN = data.length + 1;
 					$.ajax({
 						url: "http://localhost:3000/generated",
@@ -478,7 +516,7 @@ $(document).ready(()=>{
 																success: (data3, status3)=>{
 																	console.log("Network generatedPIN GET success");
 																	if(data3.length!==0){
-																		for(let k=0; k<data3.length; k++){
+																		for(let k=0; k<data3.length; k++) {
 																			$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data[k].pin);
 																		}
 																	}
@@ -514,9 +552,8 @@ $(document).ready(()=>{
 				}
 			});
 		});
-	
-
-    //buy scratchcard
+		
+	//buy scratchcard
         //a scratchcard is not bought until paid for
         //delete scratchcards from generated_scratchcards and update the `generated` column after buying
         //post bought scratchcards in `bought_scratchcards` db rsource
@@ -524,5 +561,128 @@ $(document).ready(()=>{
         //the other properties fall under this usernamed property
         //add the bought scratchcard to the `bought` column of the scratchcard table
 		let purchaseBody = $("table.pinsList tbody");
+		//$("table.pinsList tbody tr");
+		let priceTotalView = $("div.screenbox h1 span:nth-of-type(1)");
+		let quantity200 = $("p.quantity200");
+		let price200 = $("p.price200 span:nth-of-type(2)");
+		let quantity500 = $("p.quantity500");
+		let price500 = $("p.price500 span:nth-of-type(2)");
+		let quantity1000 = $("p.quantity1000");
+		let price1000 = $("p.price1000 span:nth-of-type(2)");
 		
+		buyBtn.on("click", ()=>{
+			//price display section
+			let pay200, pay500, pay1000, totalPrice, amount200=[], amount500=[], amount1000=[];
+			$.ajax({
+				url: "http://localhost:3000/generated",
+				method: "GET",
+				data: {
+					email: signedinEmail
+				},
+				dataType: "json",
+				success: (dataViewBuy, statusViewBuyViewBuy)=>{
+					console.log("Network GET generated for price success");
+					for(let d=0; d<dataViewBuy.length; d++){
+						if(dataViewBuy[d].value==200) {
+							amount200.push(dataViewBuy[d]);
+						} else if(dataViewBuy[d].value==500) {
+							amount500.push(dataViewBuy[d]);
+						} else if(dataViewBuy[d].value==1000) {
+							amount1000.push(dataViewBuy[d]);
+						}
+					}
+					pay200 = amount200.length * 200;
+					pay500 = amount500.length * 500;
+					pay1000 = amount1000.length * 1000;
+					totalPrice = pay200 + pay500 + pay1000;
+					
+					priceTotalView.text(totalPrice);
+					quantity200.text(amount200.length);
+					price200.text(pay200);
+					quantity500.text(amount500.length);
+					price500.text(pay500);
+					quantity1000.text(amount1000.length);
+					price1000.text(pay1000);
+					
+				},
+				error: ()=>{
+					console.log("Network error GET generated for price");
+				}
+			});
+			
+			//payment section
+			let cardNumber1 = $("fieldset.card-digits input:nth-of-type(1)");
+			let cardNumber2 = $("fieldset.card-digits input:nth-of-type(2)");
+			let cardNumber3 = $("fieldset.card-digits input:nth-of-type(3)");
+			let cardNumber4 = $("fieldset.card-digits input:nth-of-type(4)");
+			let cardMonth = $("fieldset.card-date input[placeholder='mm']");
+			let cardYear = $("fieldset.card-date input[placeholder='yy']");
+			let cardCVC = $("fieldset.card-cvc input");
+			let cardHolder = $("fieldset.card-name input");
+			let payBtn = $("#payBtn");
+			
+			cardNumber1.on("keyup", ()=>{
+				if(cardNumber1.val().length>=4){
+					cardNumber2.focus();
+				}
+			});
+			cardNumber2.on("keyup", ()=>{
+				if(cardNumber2.val().length>=4){
+					cardNumber3.focus();
+				}
+			});
+			cardNumber3.on("keyup", ()=>{
+				if(cardNumber3.val().length>=4){
+					cardNumber4.focus();
+				}
+			});
+			cardNumber4.on("keyup", ()=>{
+				if(cardNumber4.val().length>=4){
+					cardMonth.focus();
+				}
+			});
+			cardMonth.on("keyup", ()=>{
+				if(cardMonth.val().length>=2){
+					$("#error-month").css("display", "none");
+					if(isNaN(parseInt(cardMonth.val()))) {
+						$("#error-month").text("* invalid input. Month should in number.").css("display", "block");
+						} else if(!isNaN(parseInt(cardMonth.val())) && (parseInt(cardMonth.val())<1 || parseInt(cardMonth.val())>12)) {
+							$("#error-month").text("* invalid month range.").css("display", "block");
+						} else {
+							$("#error-month").css("display", "none");
+							
+						}
+					cardYear.focus();
+					}
+			});
+			cardYear.on("keyup", ()=>{
+				if(cardYear.val().length>=2){
+					$("#error-year").css("display", "none");
+					if(isNaN(parseInt(cardYear.val()))) {
+						$("#error-year").text("* invalid input. Year should in number.").css("display", "block");
+					} else if(!isNaN(parseInt(cardYear.val())) && parseInt(cardYear.val())<20) {
+						$("#error-year").text("* invalid year range.").css("display", "block");
+					} else {
+						$("#error-year").css("display", "none");
+						
+					}
+					cardCVC.focus();
+				} else {
+					$("#error-year").text("* invalid year range.").css("display", "block");
+				}
+			});
+			cardCVC.on("keyup", ()=>{
+				if(cardYear.val().length>=3){
+					cardHolder.focus();
+				}
+			})
+		});
+	
+	}
+		},
+		error: ()=>{
+			console.log("Network error GET Sign in");
+		}
+	});
+    
 });

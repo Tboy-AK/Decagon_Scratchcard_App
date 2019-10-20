@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
-    
 </head>
 <body>
     <!--signed-in user generates a pin-->
@@ -95,24 +94,24 @@
                 </div>
                 <div class="modal-body">
                     <div class="screenbox">
-						<h1 class="priceTotal"><span class="value">1700000000</span><span class="currency">&#x20A6</span></h1>
+						<h1 class="priceTotal"><span class="value">----</span><span class="currency">&#x20A6</span></h1>
 						
 						<div class="sub-parent">
 							<h6 class="h6 mb-2 font-weight-bold">Invoice</h6>
 							<div class="sub screen200">
 								<p class="value value200"><span class="currency">&#x20A6</span><span class="value">200</span></p>
-								<p class="quantity quantity200">1</p>
-								<p class="price price200"><span class="currency">&#x20A6</span><span class="value">200</span></p>
+								<p class="quantity quantity200">---</p>
+								<p class="price price200"><span class="currency">&#x20A6</span><span class="value">---</span></p>
 							</div>
 							<div class="sub screen500">
 								<p class="value value500"><span class="currency">&#x20A6</span><span class="value">500</span></p>
-								<p class="quantity quantity500">1</p>
-								<p class="price price500"><span class="currency">&#x20A6</span><span class="value">500</span></p>
+								<p class="quantity quantity500">---</p>
+								<p class="price price500"><span class="currency">&#x20A6</span><span class="value">---</span></p>
 							</div>
 							<div class="sub screen1000">
 								<p class="value value1000"><span class="currency">&#x20A6</span><span class="value">1000</span></p>
-								<p class="quantity quantity1000">1</p>
-								<p class="price price1000"><span class="currency">&#x20A6</span><span class="value">1000</span></p>
+								<p class="quantity quantity1000">---</p>
+								<p class="price price1000"><span class="currency">&#x20A6</span><span class="value">---</span></p>
 							</div>
 							<div class="floatStop"></div>
 						</div>
@@ -124,13 +123,18 @@
 								<h5 class="h5 mb-3 font-weight-normal">Pay using Paystack or Netbanking</h5>
 								<fieldset class="card-digits">
 									<label>Card Number</label>
-									<input type="text" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" required autofocus>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<input type="text" class="form-control" placeholder="xxxx" required>
 								</fieldset>
 								
 								<fieldset class="card-date">
 									<label>Expiry Date</label>
 									<input type="text" class="form-control" placeholder="mm" required>
 									<input type="text" class="form-control" placeholder="yy" required>
+									<p class="error" id="error-month"></p>
+									<p class="error" id="error-year"></p>
 								</fieldset>
 								
 								<fieldset class="card-cvc">
