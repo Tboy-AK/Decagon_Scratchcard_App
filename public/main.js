@@ -626,6 +626,13 @@ $(document).ready(()=>{
 					cardNumber2.focus();
 				}
 			});
+			cardNumber1.on("change", ()=>{
+				if(cardNumber1.val()[0]+cardNumber1.val()[1]+cardNumber1.val()[2]!=="444" && cardNumber1.val()[0]+cardNumber1.val()[1]+cardNumber1.val()[2]!=="555"){
+					$("#error-number").text("* invalid card.").css("display", "block");
+				} else {
+					$("#error-number").css("display", "none");
+				}
+			});
 			cardNumber2.on("keyup", ()=>{
 				if(cardNumber2.val().length>=4){
 					cardNumber3.focus();
@@ -672,10 +679,10 @@ $(document).ready(()=>{
 				}
 			});
 			cardCVC.on("keyup", ()=>{
-				if(cardYear.val().length>=3){
+				if(cardCVC.val().length>=3){
 					cardHolder.focus();
 				}
-			})
+			});
 		});
 	
 	}
