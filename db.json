@@ -51,83 +51,34 @@
       "id": 12
     },
     {
-      "pin": "22480208114226030",
-      "value": "200",
+      "pin": "58185581020452285",
+      "value": "500",
       "email": "akanji@decagon.org",
-      "scratchcardSN": "1",
-      "id": 13
+      "scratchcardSN": "2",
+      "id": 14
     },
     {
-      "pin": "33761303720935297",
+      "pin": "35240358552930257",
       "value": "1000",
       "email": "akanji@decagon.org",
       "scratchcardSN": "3",
       "id": 15
     },
     {
-      "pin": "55276537638156071",
+      "pin": "55513594639956990",
       "value": "500",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "3",
-      "id": 16
-    },
-    {
-      "pin": "25809257467224073",
-      "value": "200",
       "email": "akanji@decagon.org",
       "scratchcardSN": "4",
       "id": 17
-    },
-    {
-      "pin": "37327389250436894",
-      "value": "1000",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "5",
-      "id": 18
-    },
-    {
-      "pin": "27176206039726512",
-      "value": "200",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "7",
-      "id": 20
     }
   ],
   "bought": [
     {
-      "pin": "22480208114226030",
-      "value": "200",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "1",
-      "id": "13"
-    },
-    {
-      "pin": "33761303720935297",
+      "pin": "35240358552930257",
       "value": "1000",
       "email": "akanji@decagon.org",
       "scratchcardSN": "3",
       "id": "15"
-    },
-    {
-      "pin": "55276537638156071",
-      "value": "500",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "3",
-      "id": "16"
-    },
-    {
-      "pin": "25809257467224073",
-      "value": "200",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "4",
-      "id": "17"
-    },
-    {
-      "pin": "37327389250436894",
-      "value": "1000",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "5",
-      "id": "18"
     }
   ]
 }

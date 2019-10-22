@@ -360,7 +360,7 @@ $(document).ready(()=>{
 														console.log("Network boughtPIN GET success");
 														
 														//for(let j=0; j<data3.length; j++) {
-															//$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.scratchcardSN===data3[j].scratchcardSN})+1)+" td.bought").text(data3[j].pin);
+															//$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.pin===data3[j].pin})+1)+" td.bought").text(data3[j].pin);
 														
 														for(let i=0; i<data1.length; i++) {
 															scratchcardTableBody.append(
@@ -374,8 +374,8 @@ $(document).ready(()=>{
 														}
 														for(let k=0; k<data3.length; k++) {
 															if(data3.length!==0){
-																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data3[k].pin);
-																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.generated").text(data1[k].pin);
+																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
+																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
 															}
 														}
 														//}
@@ -437,8 +437,8 @@ $(document).ready(()=>{
 									}
 									for(let k=0; k<data3.length; k++) {
 										if(data3.length!==0) {
-											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data3[k].pin);
-											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.generated").text(data2[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
 										}
 									}
 								},
@@ -544,8 +544,8 @@ $(document).ready(()=>{
 									}
 									for(let k=0; k<data3.length; k++) {
 										if(data3.length!==0){
-											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data3[k].pin);
-											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.generated").text(data2[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
 										}
 									}
 								},
@@ -830,7 +830,7 @@ $(document).ready(()=>{
 												}
 												for(let k=0; k<data3.length; k++) {
 													if(data3.length!==0){
-														$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.scratchcardSN===data3[k].scratchcardSN})+1)+" td.bought").text(data3[k].pin);
+														$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
 													}
 												}
 												window.open("main.html", "_self", "", true);
