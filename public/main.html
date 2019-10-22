@@ -65,8 +65,8 @@
 			<div class="caption">
 				<p>
 					To delete or buy a scratchcard, 
-					select your desired scratchcards by clicking on the corresponding checkboxes,
-					and click the concerned button.
+					select the desired scratchcard by clicking on its corresponding checkbox,
+					and click the `Delete` or `Buy` button respectively.
 				</p>
 			</div>
             <thead>
@@ -119,7 +119,7 @@
 					
 					<section class="card-details">
 						<div class="container">
-							<form class="form-card">
+							<form class="form-card checkout">
 								<h5 class="h5 mb-3 font-weight-normal">Pay using Paystack or Netbanking</h5>
 								<fieldset class="card-digits">
 									<label>Card Number</label>
@@ -141,6 +141,7 @@
 								<fieldset class="card-cvc">
 									<label>CVC</label>
 									<input type="text" class="form-control" placeholder="XXX" required>
+									<p class="error" id="error-cvc"></p>
 								</fieldset>
 								
 								<fieldset class="card-name">

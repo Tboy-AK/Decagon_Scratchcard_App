@@ -15,10 +15,10 @@
   ],
   "signin": [
     {
-      "username": "Dav",
-      "email": "dav@decagon.org",
-      "password": "qwerty",
-      "id": "2"
+      "username": "Akanji",
+      "email": "akanji@decagon.org",
+      "password": "asdf",
+      "id": "1"
     }
   ],
   "generated": [
@@ -44,13 +44,6 @@
       "id": 8
     },
     {
-      "pin": "27714232803425930",
-      "value": "200",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "1",
-      "id": 11
-    },
-    {
       "pin": "28348210824926562",
       "value": "200",
       "email": "dav@decagon.org",
@@ -58,64 +51,83 @@
       "id": 12
     },
     {
-      "pin": "25055247432923805",
+      "pin": "22480208114226030",
       "value": "200",
       "email": "akanji@decagon.org",
-      "scratchcardSN": "2",
+      "scratchcardSN": "1",
       "id": 13
+    },
+    {
+      "pin": "33761303720935297",
+      "value": "1000",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "3",
+      "id": 15
+    },
+    {
+      "pin": "55276537638156071",
+      "value": "500",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "3",
+      "id": 16
+    },
+    {
+      "pin": "25809257467224073",
+      "value": "200",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "4",
+      "id": 17
+    },
+    {
+      "pin": "37327389250436894",
+      "value": "1000",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "5",
+      "id": 18
+    },
+    {
+      "pin": "27176206039726512",
+      "value": "200",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "7",
+      "id": 20
     }
   ],
   "bought": [
     {
-      "pin": "32658359560937097",
-      "value": "1000",
-      "email": "dav@decagon.org",
-      "scratchcardSN": "3",
-      "id": 7
-    }
-  ],
-  "bin": [
-    {
-      "pin": "22852257393023553",
-      "value": "200",
-      "email": "dav@decagon.org",
-      "scratchcardSN": "5",
-      "id": "12"
-    },
-    {
-      "pin": "36148360567137354",
-      "value": "1000",
-      "email": "dav@decagon.org",
-      "scratchcardSN": "5",
-      "id": "9"
-    },
-    {
-      "pin": "27171294086826447",
+      "pin": "22480208114226030",
       "value": "200",
       "email": "akanji@decagon.org",
-      "scratchcardSN": "2",
+      "scratchcardSN": "1",
       "id": "13"
     },
     {
-      "pin": "32589310921438680",
+      "pin": "33761303720935297",
       "value": "1000",
       "email": "akanji@decagon.org",
-      "scratchcardSN": "4",
-      "id": "16"
-    },
-    {
-      "pin": "37336374746830248",
-      "value": "1000",
-      "email": "akanji@decagon.org",
-      "scratchcardSN": "4",
+      "scratchcardSN": "3",
       "id": "15"
     },
     {
-      "pin": "24128264407229549",
+      "pin": "55276537638156071",
+      "value": "500",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "3",
+      "id": "16"
+    },
+    {
+      "pin": "25809257467224073",
       "value": "200",
       "email": "akanji@decagon.org",
-      "scratchcardSN": "2",
-      "id": "14"
+      "scratchcardSN": "4",
+      "id": "17"
+    },
+    {
+      "pin": "37327389250436894",
+      "value": "1000",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "5",
+      "id": "18"
     }
   ]
 }
