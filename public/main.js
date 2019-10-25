@@ -46,35 +46,41 @@ $(document).ready(()=>{
 			$(".error").css("display", "none");
 		});
 	});
-	/*
+	
 	regBtn.on("click", ()=>{
 		if(regPass.val()===confirmPass.val()){
 			$(".error").css("display", "none");
 			$.ajax({
 				url: "http://localhost:3000/users",
 				method: "GET",
-				data: {"email":regEmail.val()},
+				data: {"email": regEmail.val()},
 				dataType: "json",
-				success: (data, status)=>{
-					if (regEmail.val().length!==0)
-					{errorRegMail.css("display", "block").text("* email has been registered\nplease sign in");}
+				success: (dataSigned, statusSigned)=>{
+					if (dataSigned.length!==0){
+						errorRegMail.css("display", "block").text("* email has been registered\nplease sign in");
+					} else {
+						errorRegMail.css("display", "none");
+						user.username = regUsername.val();
+						user.email = regEmail.val();
+						user.password = regPass.val();
+						console.log("Details, not on register!");
+						$.ajax({
+							url: "http://localhost:3000/users",
+							method: "POST",
+							data: user,
+							dataType: "json",
+							success: (data, status)=>{
+								window.open("index.html", "_self", "", true);
+								alert("Account Successful\nYou can now Sign in");
+							},
+							error: (data, status)=>{
+								console.log(status+"Network POST error for sign up");
+							}
+						});
+					}
 				},
 				error: (data, status)=>{
-					$(".error").css("display", "none");
-					console.log("Details, not on register!");
-					$.ajax({
-						url: "http://localhost:3000/users",
-						method: "POST",
-						data: JSON.stringify(user),
-						dataType: "json",
-						success: (data, status)=>{
-							window.open("index.html", "_self", "", true);
-							alert("Account Successful\nYou can now Sign in");
-						},
-						error: (data, status)=>{
-							console.log(status+"\nFailed to POST\nor\nServer breakdown after POST");
-						}
-					});
+					console.log(status+"Network GET error for sign up email");
 				}
 			});
 		} else {
@@ -85,7 +91,7 @@ $(document).ready(()=>{
 			}
 		}
 		
-	});*/
+	});
 
     //sign-in user
         //check for input errors after a blur/keyup on the given input

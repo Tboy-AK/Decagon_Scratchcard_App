@@ -11,6 +11,12 @@
       "email": "dav@decagon.org",
       "password": "qwerty",
       "id": 2
+    },
+    {
+      "username": "Dami",
+      "email": "dami@fa.edu.ng",
+      "password": "rotting",
+      "id": 3
     }
   ],
   "signin": [
