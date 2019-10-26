@@ -122,6 +122,12 @@ div.pinsList button:first-child {
     visibility: visible;
     
 }
+td input[type=checkbox]{
+	margin-left: 10px;
+}
+td .badge{
+	margin-left: 10px;
+}
 table.pinsList {
     visibility: collapse;
 }
@@ -132,6 +138,7 @@ table.pinsList {
     font-size: 0.5em;
     color: red;
 }
+
 
 /*checkout*/
 section.modal {

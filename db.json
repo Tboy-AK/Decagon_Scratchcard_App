@@ -76,6 +76,13 @@
       "email": "akanji@decagon.org",
       "scratchcardSN": "4",
       "id": 17
+    },
+    {
+      "pin": "22518220230125900",
+      "value": "200",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "4",
+      "id": 18
     }
   ],
   "bought": [
@@ -85,6 +92,13 @@
       "email": "akanji@decagon.org",
       "scratchcardSN": "3",
       "id": "15"
+    },
+    {
+      "pin": "22518220230125900",
+      "value": "200",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "4",
+      "id": "18"
     }
   ]
 }

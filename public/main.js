@@ -244,7 +244,7 @@ $(document).ready(()=>{
 				let scratchcardTable = $("table.pinsList");
 				let scratchcardTableBody = $("table.pinsList tbody");
 
-				//tag webpage with username and email
+			//tag webpage with username and email
 				$.ajax({
 					url: "http://localhost:3000/signin",
 					method: "GET",
@@ -263,7 +263,7 @@ $(document).ready(()=>{
 					}
 				});
 
-				//signout functionailty
+			//signout functionailty
 				signoutBtn.on("click", ()=>{
 					$.ajax({
 						url: "http://localhost:3000/signin",
@@ -293,7 +293,7 @@ $(document).ready(()=>{
 					});
 				});
 
-				//generate PINS
+			//generate PINS
 				generatorBtn.on("click", ()=>{
 					let randomPIN=[];
 					//generate a 17-digit PIN
@@ -375,6 +375,7 @@ $(document).ready(()=>{
 																	"<td class='value'>"+data1[i].value+"</td>" +
 																	"<td class='bought'>"+"-----------------"+"</td>" +
 																	"<td class='generated'>"+data1[i].pin+"<input type='checkbox' name='row"+(i+1)+"'></td>" +
+																	"<td class='validity' id='rowInput"+(j+1)+"'><input type='text'><button class='btn btn-sm badge-pill btn-primary'>Update</button></td>" +
 																"<tr>"
 															);
 														}
@@ -382,6 +383,7 @@ $(document).ready(()=>{
 															if(data3.length!==0){
 																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
 																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
+																$("table.pinsList tbody tr.row"+(data1.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.validity").empty();
 															}
 														}
 														//}
@@ -408,7 +410,7 @@ $(document).ready(()=>{
 					});
 				});
 
-				//scratchcard table display functionality
+			//scratchcard table display functionality
 				viewBtn.on("click", ()=>{
 					$.ajax({
 						url: "http://localhost:3000/bought",
@@ -438,6 +440,7 @@ $(document).ready(()=>{
 												"<td class='value'>"+data2[j].value+"</td>" +
 												"<td class='bought'>-----------------</td>" +
 												"<td class='generated'>"+data2[j].pin+"<input type='checkbox' name='row"+(j+1)+"'></td>" +
+												"<td class='validity' id='rowInput"+(j+1)+"'><input type='text'><button class='btn btn-sm badge btn-primary'>Update</button></td>" +
 											"<tr>"
 										);
 									}
@@ -445,6 +448,7 @@ $(document).ready(()=>{
 										if(data3.length!==0) {
 											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
 											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.validity").empty();
 										}
 									}
 								},
@@ -545,6 +549,7 @@ $(document).ready(()=>{
 												"<td class='value'>"+data2[j].value+"</td>" +
 												"<td class='bought'>-----------------</td>" +
 												"<td class='generated'>"+data2[j].pin+"<input type='checkbox' name='row"+(j+1)+"'></td>" +
+												"<td class='validity' id='rowInput"+(j+1)+"'><input type='text'><button class='btn btn-sm badge btn-primary'>Update</button></td>" +
 											"<tr>"
 										);
 									}
@@ -552,6 +557,115 @@ $(document).ready(()=>{
 										if(data3.length!==0){
 											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
 											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.validity").empty();
+										}
+									}
+								},
+								error: ()=>{
+									console.log("Network generatedPIN GET error");
+								}
+							});
+						},
+						error: ()=>{
+							console.log("Network boughtPIN GET error");
+						}
+					});
+				});
+				
+			//validate scratchcards
+				$("button.validate-scratch-btn").on("click", ()=>{
+					console.log("hovered button");
+					$.ajax({
+						url: "http://localhost:3000/bought",
+						method: "GET",
+						data: {
+							email: signedinEmail
+						},
+						dataType: "json",
+						async: false,
+						success: (dataBoughtdet, statusBoughtdet)=>{
+							console.log("Network boughtPIN GET success for validity");
+							$.ajax({
+								url: "http://localhost:3000/generated",
+								method: "GET",
+								data: {
+									email: signedinEmail
+								},
+								dataType: "json",
+								success: (data, status)=>{
+									console.log("Network generatedPIN GET success for validity");
+									for(let i=0; i<data.length; i++){
+
+										$("td#rowInput1 button").on("click", ()=>{
+											console.log("update clicked");
+											if($("td#rowInput1 input").val().length===3){
+												$.ajax({
+													url: "http://localhost:3000/generated/"+data[i].id,
+													method: "PUT",
+													data: {"value": $("td#rowInput1 input").val()},
+													async: false,
+													success: ()=>{
+														console.log("Network generatedPIN PUT success for validating");
+													},
+													error: ()=>{
+														console.log("Network bought PUT error for deleting PINs validating ");
+													}
+												});
+											}
+											else{console.log("invalid update figure")}
+										});
+									}
+									console.log("checklist\n"+JSON.stringify(selectedPINS));
+
+								},
+								error: ()=>{
+									console.log("Network generatedPIN GET error for validating");
+								}
+							});
+						},
+						error: ()=>{
+							console.log("Network boughtPIN GET error for validating");
+						}
+					});
+					
+					//refresh the table body content
+					$.ajax({
+						url: "http://localhost:3000/bought",
+						method: "GET",
+						data: {
+							email: signedinEmail
+						},
+						dataType: "json",
+						success: (data3, status3)=>{
+							console.log("Network boughtPIN GET success for refreshing");
+
+							//for generated
+							$.ajax({
+								url: "http://localhost:3000/generated",
+								method: "GET",
+								data: {
+									email: signedinEmail
+								},
+								dataType: "json",
+								success: (data2, status2)=> {
+									console.log("Network generatedPIN GET success for refreshing");
+									scratchcardTableBody.empty();
+									for(let j=0; j<data2.length; j++) {
+										scratchcardTableBody.append(
+											"<tr class='row"+(j+1)+"'>" +
+												"<th class='sNum' scope='row'>"+(j+1)+"</th>" +
+												"<td class='value'>"+data2[j].value+"</td>" +
+												"<td class='bought'>-----------------</td>" +
+												"<td class='generated'>"+data2[j].pin+"<input type='checkbox' name='row"+(j+1)+"'></td>" +
+												"<td class='validity' id='rowInput"+(j+1)+"'><input type='text'><button class='btn btn-sm badge btn-primary'>Update</button></td>" +
+											"<tr>"
+										);
+									}
+									for(let k=0; k<data3.length; k++) {
+										if(data3.length!==0){
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.generated").text(data3[k].pin);
+											$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.validity").empty();
 										}
 									}
 								},
@@ -802,6 +916,7 @@ $(document).ready(()=>{
 									}
 									
 								}
+								
 								//refresh the table body content
 								$.ajax({
 									url: "http://localhost:3000/bought",
@@ -831,12 +946,14 @@ $(document).ready(()=>{
 															"<td class='value'>"+data2[j].value+"</td>" +
 															"<td class='bought'>-----------------</td>" +
 															"<td class='generated'>"+data2[j].pin+"</td>" +
+															"<td class='validity' id='rowInput"+(j+1)+"'><input type='text'></td>" +
 														"<tr>"
 													);
 												}
 												for(let k=0; k<data3.length; k++) {
 													if(data3.length!==0){
 														$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.bought").text(data3[k].pin);
+														$("table.pinsList tbody tr.row"+(data2.findIndex((e)=>{return e.pin===data3[k].pin})+1)+" td.validity").empty();
 													}
 												}
 												window.open("main.html", "_self", "", true);

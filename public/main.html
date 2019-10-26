@@ -59,6 +59,7 @@
             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View the scratchcard table">View</button>
             <button type="button" class="btn btn-primary buy-scratch-btn" data-toggle="modal" data-target="#buyScratchcard">Buy</button>
             <button type="button" class="btn btn-primary det-scratch-btn">Det</button>
+			<button type="button" class="btn btn-primary validate-scratch-btn">Validate</button>
         </div>
         <!--the initial visibility of the table is collapsed.-->
         <table class="table pinsList">
@@ -71,10 +72,11 @@
 			</div>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Values</th>
-					<th scope="col">Bought Scratchcards</th>
-                    <th scope="col">Generated PINs</th>
+                    <th scope="col" class="sNum">#</th>
+                    <th scope="col" class="value">Values</th>
+					<th scope="col" class="bought">Bought Scratchcards</th>
+                    <th scope="col" class="generated">Generated PINs</th>
+					<th scope="col" class="validity">Validation</th>
                 </tr>
             </thead>
             <tbody></tbody>
