@@ -1,0 +1,241 @@
+* {
+	box-sizing: border-box;
+}
+body{
+    background-color: #fafafa;
+    padding-top: 1%;
+    box-sizing: border-box;
+}
+html.user, body.user {
+    background-color: #f5f5f5;
+    padding-top: 5%;
+}
+.floatStop {
+	clear: both;
+}
+#sign-up-link, #sign-in-link {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+header.appHeader{
+	margin-bottom: 1em;
+}
+header.appHeader h4.salutation{
+	clear: both;
+	padding: 0.5em;
+}
+#sign-out-link {
+    padding: 15px;
+    margin: auto;
+}
+#sign-up-link button, #sign-in-link button, #sign-out-link button, p.salutation span {
+    float: right;
+}
+p.salutation span {
+    clear: right;
+	font-size: 0.7em;
+}
+p.salutation span:hover {
+    color: #007bff;
+}
+.container {
+    display: flex;
+    align-items: center;
+}
+.form-signin, .form-signup {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+.form-signin .checkbox, .form-signup .checkbox {
+    font-weight: 400;
+}
+.form-signin .form-control, .form-signup .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"], .form-signup input[type="email"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signin input[type="password"], #confirmPassword {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.form-signup input[type="password"] {
+    margin-bottom: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+section#sign-up-frame {
+    display: none;
+}
+.error {
+	display: none;
+	font-size: 0.8em;
+	color: red;
+}
+#error-signin {
+	font-size: 1.1em;
+	font-weight: 600;
+}
+section.pinslist, section.pinGenerator {
+	min-width: 480px;
+}
+table.pinGenerator tbody td{
+    width: 25%;
+}
+table.pinGenerator tbody td:nth-of-type(3){
+    width: 50%;
+}
+table.pinGenerator tbody td{
+    border: none;
+}
+section.pinGenerator{
+    margin: 1em;
+    box-shadow: 0px 0px 0.4em 0.0em #eaeaea;
+}
+section.pinsList {
+    margin-top: 5em;
+    padding: 1em;
+    border: 1px #e1e1e1 solid;
+    background-color: #eaeaea;
+}
+.btn-group{
+    margin-bottom: 1em;
+}
+div.pinsList button {
+    visibility: hidden;
+}
+div.pinsList button:first-child {
+    visibility: visible;
+    
+}
+td input[type=checkbox]{
+	margin-left: 10px;
+}
+td .badge{
+	margin-left: 10px;
+}
+table.pinsList {
+    visibility: collapse;
+}
+[err] input{
+    background-color: #ff000015;
+}
+[err] p{
+    font-size: 0.5em;
+    color: red;
+}
+
+
+/*checkout*/
+section.modal {
+	height: 99%;
+	min-width: 480px;
+}
+div.sub-parent {
+	background-color: #999;
+}
+.screenbox {
+	height: 30%;
+	margin: 1em auto 2em;
+	width: 60%;
+	box-shadow: 0px 0px 1px 0px #dfdfdf;
+}
+.screenbox h1 {
+	width: 100%;
+	clear: both;
+	text-align: center;
+	padding: 0.1em 0em 0.5em;
+	font-size: 4em;
+	overflow-x: hidden;
+}
+.screenbox h1:hover {
+	overflow-x: auto;
+}
+.screenbox h1 span.currency {
+	font-size: 0.5em;
+	bottom: 0.6em;
+	position: relative;
+	margin-left: 0.2em;
+}
+div.screenbox div.sub-parent h6:first-of-type {
+	text-align: center;
+	border-bottom: 1px #bbb5 solid;
+	padding-bottom: 12px;
+	color: #444;
+}
+div.screenbox div.sub {
+	width: 33%;
+	float: left;
+	text-align: center;
+	margin: 0 0.1%;
+}
+div.screenbox div.sub p.value {
+	font-size: 10px;
+}
+div.screenbox div.sub p {
+	font-size: 12px;
+	margin-bottom: 0;
+}
+section.card-details {
+	background-color: #999;
+	padding: 10px;
+	width: 100%;
+}
+section.card-details form {
+	width: 100%;
+}
+
+section.card-details fieldset label {
+	margin-top: 0;
+}
+label {
+	display: block;
+}
+form.form-card h5 {
+	color: #ddd;
+}
+fieldset.card-digits input {
+	width: 4em;
+	display: inline-block;
+}
+fieldset.card-date {
+	width: 70%;
+	float: left;
+}
+fieldset.card-date input {
+	display: inline-block;
+	width: 60px;
+}
+fieldset.card-date label {
+	display: block;
+	width: 100%;
+}
+fieldset.card-cvc {
+	width: auto;
+	float: right;
+}
+fieldset.card-cvc input {
+	width: 80px;
+}
+fieldset.card-name {
+	clear: both;
+}
+#payBtn {
+	width: 30%;
+	min-width: 160px;
+	margin: 10px auto 0;
+}

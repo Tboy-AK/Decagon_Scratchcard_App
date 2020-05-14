@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="scratchcard">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scratchcard App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+<body>
+    <!--signed-in user generates a pin-->
+    <!--created pin is displayed after generation-->
+    <!--signed-in user can view all his generated pins with the 'view all' button-->
+    <!--there might be a search button to filter the table of scratchcards. included after the mvp-->
+    <!--a checkbox by each pin in the table to enable deleting pins-->
+    <!--a 'delete' button by a 'buy' button at the table bottom-->
+    <!--display scratchcards paid for-->
+	<header class="appHeader">
+		<div id="sign-out-link"><button class="btn btn-sm btn-secondary">Sign out</button>
+		<p class="salutation"><span></span></p>
+		</div>
+		<h4 class="salutation"></h4>
+	</header>
+
+    <!--pin generator section-->
+    <!--dropdown button/input for value-->
+    <section class="table pinGenerator">
+    <table class="table pinGenerator">
+        <div class="caption">
+            <h2>Scratchcard Generator</h2>
+            <p>
+                Choose the scratchcard value of your choice and click the 
+                <strong>Generate</strong> button to create a scratchcard
+            </p>
+        </div>
+        <tbody>
+            <tr>
+                <td>
+                    <select id="valueSelector">
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                    </select>
+                </td>
+                <td><button type="button" class="btn btn-primary" id="generatorBtn">Generate</button></td>
+                <td><p class="pinGenerator"></p></td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+      
+    <!--generated pins section-->
+    <section class="pinsList">
+		<h2>Table of Scratchcards</h2>
+        <div class="btn-group pinsList" role="group" aria-label="Basic example">
+            <!--the initial display of these children buttons is hidden, except `View` button, the first.-->
+            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View the scratchcard table">View</button>
+            <button type="button" class="btn btn-primary buy-scratch-btn" data-toggle="modal" data-target="#buyScratchcard">Buy</button>
+            <button type="button" class="btn btn-primary det-scratch-btn">Det</button>
+			<button type="button" class="btn btn-primary validate-scratch-btn">Validate</button>
+        </div>
+        <!--the initial visibility of the table is collapsed.-->
+        <table class="table pinsList">
+			<div class="caption">
+				<p>
+					To delete or buy a scratchcard, 
+					select the desired scratchcard by clicking on its corresponding checkbox,
+					and click the `Delete` or `Buy` button respectively.
+				</p>
+			</div>
+            <thead>
+                <tr>
+                    <th scope="col" class="sNum">#</th>
+                    <th scope="col" class="value">Values</th>
+					<th scope="col" class="bought">Bought Scratchcards</th>
+                    <th scope="col" class="generated">Generated PINs</th>
+					<th scope="col" class="validity">Validation</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </section>
+
+	
+    <!--purchase modal or window or page-->
+    <section class="modal fade checkout" id="buyScratchcard" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Payment Getaway</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="screenbox">
+						<h1 class="priceTotal"><span class="value">----</span><span class="currency">&#x20A6</span></h1>
+						
+						<div class="sub-parent">
+							<h6 class="h6 mb-2 font-weight-bold">Invoice</h6>
+							<div class="sub screen200">
+								<p class="value value200"><span class="currency">&#x20A6</span><span class="value">200</span></p>
+								<p class="quantity quantity200">---</p>
+								<p class="price price200"><span class="currency">&#x20A6</span><span class="value">---</span></p>
+							</div>
+							<div class="sub screen500">
+								<p class="value value500"><span class="currency">&#x20A6</span><span class="value">500</span></p>
+								<p class="quantity quantity500">---</p>
+								<p class="price price500"><span class="currency">&#x20A6</span><span class="value">---</span></p>
+							</div>
+							<div class="sub screen1000">
+								<p class="value value1000"><span class="currency">&#x20A6</span><span class="value">1000</span></p>
+								<p class="quantity quantity1000">---</p>
+								<p class="price price1000"><span class="currency">&#x20A6</span><span class="value">---</span></p>
+							</div>
+							<div class="floatStop"></div>
+						</div>
+					</div>
+					
+					<section class="card-details">
+						<div class="container">
+							<form class="form-card checkout">
+								<h5 class="h5 mb-3 font-weight-normal">Pay using Paystack or Netbanking</h5>
+								<fieldset class="card-digits">
+									<label>Card Number</label>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<input type="text" class="form-control" placeholder="xxxx" required>
+									<p class="error" id="error-number"></p>
+								</fieldset>
+								
+								<fieldset class="card-date">
+									<label>Expiry Date</label>
+									<input type="text" class="form-control" placeholder="mm" required>
+									<input type="text" class="form-control" placeholder="yy" required>
+									<p class="error" id="error-month"></p>
+									<p class="error" id="error-year"></p>
+								</fieldset>
+								
+								<fieldset class="card-cvc">
+									<label>CVC</label>
+									<input type="text" class="form-control" placeholder="XXX" required>
+									<p class="error" id="error-cvc"></p>
+								</fieldset>
+								
+								<fieldset class="card-name">
+									<label>Cardholder's Name</label>
+									<input type="text" class="form-control" placeholder="Name on card" required>
+								</fieldset>
+								
+								<button class="btn btn-lg btn-primary btn-block" type="submit" id="payBtn">Pay Now</button>
+							</form>
+						</div>
+					</section>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary payment-option" id="netBankBtn">Netbanking</button>
+                    <button type="button" class="btn btn-primary payment-option" id="paystackBtn">PayStack</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="dist/jquery.js"></script>
+    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+</html>

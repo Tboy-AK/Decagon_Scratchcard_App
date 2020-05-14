@@ -1,0 +1,104 @@
+{
+  "users": [
+    {
+      "username": "Akanji",
+      "email": "akanji@decagon.org",
+      "password": "asdf",
+      "id": 1
+    },
+    {
+      "username": "Dav",
+      "email": "dav@decagon.org",
+      "password": "qwerty",
+      "id": 2
+    },
+    {
+      "username": "Dami",
+      "email": "dami@fa.edu.ng",
+      "password": "rotting",
+      "id": 3
+    }
+  ],
+  "signin": [
+    {
+      "username": "Akanji",
+      "email": "akanji@decagon.org",
+      "password": "asdf",
+      "id": "1"
+    }
+  ],
+  "generated": [
+    {
+      "pin": "22963260977429990",
+      "value": "200",
+      "email": "dav@decagon.org",
+      "scratchcardSN": "2",
+      "id": 6
+    },
+    {
+      "pin": "32658359560937097",
+      "value": "1000",
+      "email": "dav@decagon.org",
+      "scratchcardSN": "3",
+      "id": 7
+    },
+    {
+      "pin": "58590504759453912",
+      "value": "500",
+      "email": "dav@decagon.org",
+      "scratchcardSN": "4",
+      "id": 8
+    },
+    {
+      "pin": "28348210824926562",
+      "value": "200",
+      "email": "dav@decagon.org",
+      "scratchcardSN": "4",
+      "id": 12
+    },
+    {
+      "pin": "58185581020452285",
+      "value": "500",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "2",
+      "id": 14
+    },
+    {
+      "pin": "35240358552930257",
+      "value": "1000",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "3",
+      "id": 15
+    },
+    {
+      "pin": "55513594639956990",
+      "value": "500",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "4",
+      "id": 17
+    },
+    {
+      "pin": "22518220230125900",
+      "value": "200",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "4",
+      "id": 18
+    }
+  ],
+  "bought": [
+    {
+      "pin": "35240358552930257",
+      "value": "1000",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "3",
+      "id": "15"
+    },
+    {
+      "pin": "22518220230125900",
+      "value": "200",
+      "email": "akanji@decagon.org",
+      "scratchcardSN": "4",
+      "id": "18"
+    }
+  ]
+}
