@@ -17,16 +17,15 @@
       "email": "dami@fa.edu.ng",
       "password": "rotting",
       "id": 3
-    }
-  ],
-  "signin": [
+    },
     {
-      "username": "Akanji",
-      "email": "akanji@decagon.org",
-      "password": "asdf",
-      "id": "1"
+      "username": "Teddy",
+      "email": "teddy@decagon.com",
+      "password": "like",
+      "id": 4
     }
   ],
+  "signin": [],
   "generated": [
     {
       "pin": "22963260977429990",
@@ -83,6 +82,27 @@
       "email": "akanji@decagon.org",
       "scratchcardSN": "4",
       "id": 18
+    },
+    {
+      "pin": "55481563882951064",
+      "value": "500",
+      "email": "teddy@decagon.com",
+      "scratchcardSN": "2",
+      "id": 20
+    },
+    {
+      "pin": "33859311939336585",
+      "value": "1000",
+      "email": "teddy@decagon.com",
+      "scratchcardSN": "3",
+      "id": 21
+    },
+    {
+      "pin": "28833290582523265",
+      "value": "200",
+      "email": "teddy@decagon.com",
+      "scratchcardSN": "3",
+      "id": 22
     }
   ],
   "bought": [
@@ -99,6 +119,20 @@
       "email": "akanji@decagon.org",
       "scratchcardSN": "4",
       "id": "18"
+    },
+    {
+      "pin": "55481563882951064",
+      "value": "500",
+      "email": "teddy@decagon.com",
+      "scratchcardSN": "2",
+      "id": "20"
+    },
+    {
+      "pin": "33859311939336585",
+      "value": "1000",
+      "email": "teddy@decagon.com",
+      "scratchcardSN": "3",
+      "id": "21"
     }
   ]
 }

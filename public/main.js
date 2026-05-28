@@ -375,7 +375,7 @@ $(document).ready(()=>{
 																	"<td class='value'>"+data1[i].value+"</td>" +
 																	"<td class='bought'>"+"-----------------"+"</td>" +
 																	"<td class='generated'>"+data1[i].pin+"<input type='checkbox' name='row"+(i+1)+"'></td>" +
-																	"<td class='validity' id='rowInput"+(j+1)+"'><input type='text'><button class='btn btn-sm badge-pill btn-primary'>Update</button></td>" +
+																	"<td class='validity' id='rowInput"+(i+1)+"'><input type='text'><button class='btn btn-sm badge-pill btn-primary'>Update</button></td>" +
 																"<tr>"
 															);
 														}
